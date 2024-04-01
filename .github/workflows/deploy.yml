@@ -20,5 +20,3 @@ jobs:
     steps:
       - name: Install, build, and upload your site
         uses: MicroWebStacks/astro-big-doc@main
-        with:
-          path: .
