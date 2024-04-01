@@ -15,8 +15,18 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install, build, and upload your site
+      - name: Install and build
         uses: MicroWebStacks/astro-big-doc@main
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: github-pages
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
